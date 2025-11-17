@@ -1,7 +1,3 @@
-#######################################
-# SQS Main Queues
-#######################################
-
 resource "aws_sqs_queue" "this" {
   for_each = var.queues
 
@@ -17,10 +13,6 @@ resource "aws_sqs_queue" "this" {
     try(each.value.tags, {})
   )
 }
-
-#######################################
-# SQS Dead-Letter Queues
-#######################################
 
 resource "aws_sqs_queue" "dlq" {
   for_each = var.queues
